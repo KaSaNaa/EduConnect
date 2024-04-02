@@ -50,6 +50,6 @@ This project is licensed under the [MIT License](LICENSE).
 
 ## Contact
 
-If you have any questions or suggestions, please feel free to contact us at [contact@example.com](mailto:contact@example.com).
+If you have any questions or suggestions, please feel free to contact us at [Gmail](mailto:pasindudeshitha123@gmail.com).
 
 Thank you for using our Course Registration App!
