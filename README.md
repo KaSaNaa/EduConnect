@@ -27,7 +27,7 @@ Welcome to the Course Registration App! This mobile application is designed to s
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/your-username/course-registration-app.git
+    git clone https://github.com/KaSaNaa/EduConnect.git
     ```
 
 2. Open the project in Android Studio or your preferred IDE.
