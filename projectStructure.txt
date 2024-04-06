@@ -1,0 +1,58 @@
+CourseRegistrationApp/
+├── app/
+│   ├── src/
+│   │   ├── main/
+│   │   │   ├── java/
+│   │   │   │   ├── com/
+│   │   │   │   │   ├── yourcompany/
+│   │   │   │   │   │   ├── app/
+│   │   │   │   │   │   │   ├── data/
+│   │   │   │   │   │   │   │   ├── model/
+│   │   │   │   │   │   │   │   │   ├── Course.kt  // Data model for courses
+│   │   │   │   │   │   │   │   │   ├── User.kt    // Data model for users
+│   │   │   │   │   │   │   │   ├── repository/
+│   │   │   │   │   │   │   │   │   ├── CourseRepository.kt  // Interface for course data operations
+│   │   │   │   │   │   │   │   │   ├── UserRepository.kt    // Interface for user data operations
+│   │   │   │   │   │   │   ├── network/
+│   │   │   │   │   │   │   │   ├── ApiService.kt  // Interface for API services
+│   │   │   │   │   │   │   │   ├── RetrofitClient.kt  // Retrofit client setup
+│   │   │   │   │   │   │   ├── ui/
+│   │   │   │   │   │   │   │   ├── activities/
+│   │   │   │   │   │   │   │   │   ├── MainActivity.kt  // Main entry point/activity
+│   │   │   │   │   │   │   │   │   ├── LoginActivity.kt  // Login screen activity
+│   │   │   │   │   │   │   │   │   ├── CourseListActivity.kt  // Activity to display course list
+│   │   │   │   │   │   │   │   │   ├── CourseDetailsActivity.kt  // Activity to display course details
+│   │   │   │   │   │   │   │   │   ├── RegistrationActivity.kt  // Registration screen activity
+│   │   │   │   │   │   │   │   ├── fragments/
+│   │   │   │   │   │   │   │   │   ├── CourseListFragment.kt  // Fragment for course list
+│   │   │   │   │   │   │   │   │   ├── CourseDetailsFragment.kt  // Fragment for course details
+│   │   │   │   │   │   │   │   │   ├── RegistrationFragment.kt  // Fragment for registration form
+│   │   │   │   │   │   │   │   ├── adapters/
+│   │   │   │   │   │   │   │   │   ├── CourseAdapter.kt  // Adapter for course list RecyclerView
+│   │   │   │   │   │   │   │   │   ├── NotificationAdapter.kt  // Adapter for notifications RecyclerView
+│   │   │   │   │   │   │   │   ├── viewmodels/
+│   │   │   │   │   │   │   │   │   ├── CourseViewModel.kt  // ViewModel for course-related data
+│   │   │   │   │   │   │   │   │   ├── UserViewModel.kt  // ViewModel for user-related data
+│   │   │   │   │   │   │   │   ├── utils/
+│   │   │   │   │   │   │   │   │   ├── Constants.kt  // Constants file
+│   │   │   │   │   │   │   │   │   ├── ValidationUtils.kt  // Input validation utilities
+│   │   │   │   │   │   │   ├── di/
+│   │   │   │   │   │   │   │   ├── AppModule.kt  // Dagger Hilt module
+│   │   │   │   │   │   │   │   ├── AppComponent.kt  // Dagger Hilt component
+│   │   │   │   │   │   │   ├── CourseRegistrationApp.kt  // Application class
+│   │   │   ├── res/
+│   │   │   │   ├── layout/
+│   │   │   │   │   ├── activity_main.xml  // Main activity layout
+│   │   │   │   │   ├── activity_login.xml  // Login activity layout
+│   │   │   │   │   ├── activity_course_list.xml  // Course list activity layout
+│   │   │   │   │   ├── activity_course_details.xml  // Course details activity layout
+│   │   │   │   │   ├── activity_registration.xml  // Registration activity layout
+│   │   │   │   │   ├── fragment_course_list.xml  // Course list fragment layout
+│   │   │   │   │   ├── fragment_course_details.xml  // Course details fragment layout
+│   │   │   │   │   ├── fragment_registration.xml  // Registration fragment layout
+│   │   │   │   ├── values/
+│   │   │   │   │   ├── strings.xml  // String resources file
+│   │   │   │   │   ├── colors.xml  // Color resources file
+│   │   │   │   │   ├── dimens.xml  // Dimension resources file
+├── README.md  // Project README file
+├── LICENSE  // License file
