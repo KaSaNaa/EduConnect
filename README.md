@@ -5,6 +5,12 @@
 Welcome to the Course Registration App! This mobile application is designed to streamline the course registration process for school students in our educational institute's short course program. With this app, users can easily register for courses, view course details, and receive notifications about course openings and updates.
 
 ## UI Design
+<div style="display: flex">
+<img src="https://github.com/KaSaNaa/EduConnect/blob/9184b86865541de40c2278bcc65e14d9f944c733/UI-Designs/Main%20Screen.png" alt="Launch Screen" width="170"/>
+<img src="https://github.com/KaSaNaa/EduConnect/blob/master/UI-Designs/Sign%20in.png" alt="Sign in" width="170" />
+<img src="https://github.com/KaSaNaa/EduConnect/blob/master/UI-Designs/Sign%20up.png" alt="Sign up" width="170" />
+</div>
+
 
 
 ## Features
