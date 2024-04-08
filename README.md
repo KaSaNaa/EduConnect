@@ -4,6 +4,9 @@
 
 Welcome to the Course Registration App! This mobile application is designed to streamline the course registration process for school students in our educational institute's short course program. With this app, users can easily register for courses, view course details, and receive notifications about course openings and updates.
 
+## UI Design
+
+
 ## Features
 
 - **User Authentication**: Users can log in as Administrators or Signing users to access different functionalities.
