@@ -6,9 +6,10 @@ Welcome to the Course Registration App! This mobile application is designed to s
 
 ## UI Design
 <div style="display: flex">
-<img src="https://github.com/KaSaNaa/EduConnect/blob/9184b86865541de40c2278bcc65e14d9f944c733/UI-Designs/Main%20Screen.png" alt="Launch Screen" width="170"/>
-<img src="https://github.com/KaSaNaa/EduConnect/blob/master/UI-Designs/Sign%20in.png" alt="Sign in" width="170" />
-<img src="https://github.com/KaSaNaa/EduConnect/blob/master/UI-Designs/Sign%20up.png" alt="Sign up" width="170" />
+    <img src= "https://github.com/KaSaNaa/EduConnect/blob/9184b86865541de40c2278bcc65e14d9f944c733/UI-Designs/Main%20Screen.png" alt="Launch Screen" width="170"/>
+    <img src= "https://github.com/KaSaNaa/EduConnect/blob/master/UI-Designs/Sign%20in.png" alt="Sign in" width="170" />
+    <img src= "https://github.com/KaSaNaa/EduConnect/blob/ebfcc5034820ead95804a5517f68013f94eb48de/UI-Designs/Home%20Screen.png" alt= "Home" width="170" />
+    <img src= "https://github.com/KaSaNaa/EduConnect/blob/ebfcc5034820ead95804a5517f68013f94eb48de/UI-Designs/Courses%20Screen.png" alt= "Courses" width="170" />
 </div>
 
 
