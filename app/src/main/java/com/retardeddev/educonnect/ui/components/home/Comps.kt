@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
@@ -34,34 +35,32 @@ import com.retardeddev.educonnect.ui.theme.primaryContainerDark
 
 @Composable
 private fun WelcomeCard(name: String) {
-    Row(
-        horizontalArrangement = Arrangement.spacedBy(0.dp, Alignment.CenterHorizontally),
-        verticalAlignment = Alignment.CenterVertically,
+    Card(
+        colors = CardDefaults.cardColors(
+            containerColor = primaryContainerDark
+        ),
+        modifier = Modifier
+            .shadow(
+                elevation = 2.dp,
+                spotColor = Color(0x4D000000),
+                ambientColor = Color(0x4D000000)
+            )
+            .shadow(
+                elevation = 3.dp,
+                spotColor = Color(0x26000000),
+                ambientColor = Color(0x26000000)
+            )
+            .width(360.dp)
+            .height(146.dp)
     ) {
-        Card(
-            colors = CardDefaults.cardColors(
-                containerColor = primaryContainerDark
-            ),
-            modifier = Modifier
-                .shadow(
-                    elevation = 2.dp,
-                    spotColor = Color(0x4D000000),
-                    ambientColor = Color(0x4D000000)
-                )
-                .shadow(
-                    elevation = 3.dp,
-                    spotColor = Color(0x26000000),
-                    ambientColor = Color(0x26000000)
-                )
-                .width(360.dp)
-                .height(146.dp)
-        ) {
+        Box(modifier = Modifier.padding(20.dp)) {
             Text(
                 text = buildAnnotatedString {
                     append("Welcome Back,\n\n")
                     withStyle(style = SpanStyle(
                         fontSize = 18.2.sp,
-                        fontWeight = FontWeight.Bold)) {
+                        fontWeight = FontWeight.Bold
+                    )) {
                         append(name)
                     }
                 },
@@ -69,24 +68,33 @@ private fun WelcomeCard(name: String) {
                 fontSize = 11.69.sp,
                 lineHeight = 16.7.sp,
                 overflow = TextOverflow.Ellipsis,
+                modifier = Modifier.align(Alignment.TopStart)
+            )
+
+            Image(
+                painter = painterResource(id = R.drawable.ic_launcher_background),
+                contentDescription = "image description",
+                contentScale = ContentScale.FillBounds,
+                alignment = Alignment.CenterEnd,
                 modifier = Modifier
-                    .padding(35.dp, 45.dp)
+                    .size(74.dp)
+                    .clip(RoundedCornerShape(50.dp))
+                    .padding()
             )
         }
     }
-    Box(
-        modifier = Modifier
-            .padding(250.dp, 35.dp, 0.dp, 0.dp)
-    ) {
-        Image(
-            painter = painterResource(id = R.drawable.ic_launcher_background),
-            contentDescription = "image description",
-            contentScale = ContentScale.FillBounds,
-            alignment = Alignment.Center,
+}
+
+
+@Composable
+fun CoursesCarousel() {
+    Row {
+        Text(
+            text = "Courses",
+            color = onBackgroundDark,
             modifier = Modifier
-                .width(74.dp)
-                .height(74.dp)
-                .clip(RoundedCornerShape(50.dp))
+                .padding(10.dp),
+
         )
     }
 }
@@ -95,4 +103,10 @@ private fun WelcomeCard(name: String) {
 @Composable
 private fun PreviewWelcomeCard() {
     WelcomeCard(name = "Pasindu Ranawakage")
+}
+
+@Preview
+@Composable
+private fun CoursesPrev() {
+    CoursesCarousel()
 }
