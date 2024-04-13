@@ -2,6 +2,7 @@ package com.retardeddev.educonnect.ui.components.home
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -42,8 +43,16 @@ private fun WelcomeCard(name: String) {
                 containerColor = primaryContainerDark
             ),
             modifier = Modifier
-                .shadow(elevation = 2.dp, spotColor = Color(0x4D000000), ambientColor = Color(0x4D000000))
-                .shadow(elevation = 3.dp, spotColor = Color(0x26000000), ambientColor = Color(0x26000000))
+                .shadow(
+                    elevation = 2.dp,
+                    spotColor = Color(0x4D000000),
+                    ambientColor = Color(0x4D000000)
+                )
+                .shadow(
+                    elevation = 3.dp,
+                    spotColor = Color(0x26000000),
+                    ambientColor = Color(0x26000000)
+                )
                 .width(360.dp)
                 .height(146.dp)
         ) {
@@ -65,16 +74,21 @@ private fun WelcomeCard(name: String) {
             )
         }
     }
-//    Image(
-//        painter = painterResource(id = R.drawable.ic_launcher_background),
-//        contentDescription = "image description",
-//        contentScale = ContentScale.FillBounds,
-//        alignment = Alignment.Center,
-//        modifier = Modifier
-//            .width(74.dp)
-//            .height(74.dp)
-//            .clip(RoundedCornerShape(50.dp))
-//    )
+    Box(
+        modifier = Modifier
+            .padding(250.dp, 35.dp, 0.dp, 0.dp)
+    ) {
+        Image(
+            painter = painterResource(id = R.drawable.ic_launcher_background),
+            contentDescription = "image description",
+            contentScale = ContentScale.FillBounds,
+            alignment = Alignment.Center,
+            modifier = Modifier
+                .width(74.dp)
+                .height(74.dp)
+                .clip(RoundedCornerShape(50.dp))
+        )
+    }
 }
 
 @Preview
