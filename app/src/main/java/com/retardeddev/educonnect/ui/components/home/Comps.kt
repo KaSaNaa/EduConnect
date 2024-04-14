@@ -12,12 +12,18 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.outlined.ArrowForward
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Divider
 import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.Icon
+import androidx.compose.material3.ListItem
+import androidx.compose.material3.ListItemColors
+import androidx.compose.material3.ListItemDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -38,8 +44,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.retardeddev.educonnect.R
 import com.retardeddev.educonnect.ui.theme.onBackgroundDark
+import com.retardeddev.educonnect.ui.theme.onSecondaryContainerDarkMediumContrast
 import com.retardeddev.educonnect.ui.theme.onSecondaryDark
 import com.retardeddev.educonnect.ui.theme.primaryContainerDark
+import com.retardeddev.educonnect.ui.theme.secondaryContainerDark
+import com.retardeddev.educonnect.ui.theme.secondaryDark
 
 
 @Suppress("SameParameterValue")
@@ -101,7 +110,6 @@ private fun WelcomeCard(name: String) {
     }
 }
 
-
 @Composable
 fun CoursesCarousel() {
     Card(
@@ -129,6 +137,7 @@ fun CoursesCarousel() {
                     text = "Courses",
                     style = MaterialTheme.typography.titleMedium,
                     color = onBackgroundDark,
+                    onTextLayout = {/*TODO*/},
                     modifier = Modifier
                         .weight(1f) // This will take up the remaining space
                         .padding(1.dp, 14.dp)
@@ -157,6 +166,7 @@ fun CoursesCarousel() {
                         Text(
                             "View",
                             color = onBackgroundDark,
+                            onTextLayout = {/*TODO*/},
                             fontSize = MaterialTheme.typography.labelMedium.fontSize,
                         )
                     }
@@ -169,6 +179,71 @@ fun CoursesCarousel() {
                     R.drawable.ic_launcher_background
                 )
                 ImageCarousel(imageList = imageList)
+            }
+        }
+    }
+}
+
+@Composable
+fun RecentUpdates(updates: List<String>) {
+    Card(
+        colors = CardDefaults.cardColors(
+            containerColor = primaryContainerDark
+        ),
+        modifier = Modifier
+            .shadow(
+                elevation = 2.dp,
+                spotColor = Color(0x4D000000),
+                ambientColor = Color(0x4D000000)
+            )
+            .shadow(
+                elevation = 3.dp,
+                spotColor = Color(0x26000000),
+                ambientColor = Color(0x26000000)
+            )
+            .width(360.dp)
+            .height(246.dp)
+    ) {
+        Column(modifier = Modifier.padding(20.dp, 5.dp)) {
+            Row {
+                Text(
+                    text = "Recent Updates",
+                    style = MaterialTheme.typography.titleMedium,
+                    color = onBackgroundDark,
+                    onTextLayout = {/*TODO*/ },
+                    modifier = Modifier
+                        .weight(1f) // This will take up the remaining space
+                        .padding(1.dp, 14.dp)
+                        .align(Alignment.CenterVertically) // Align to center vertically
+                )
+            }
+            Box(modifier = Modifier.padding(10.dp)) {
+                Column {
+                    Card(
+                        colors = CardDefaults.cardColors(onSecondaryDark),
+                    ){
+                        updates.forEach { update ->
+                            ListItem(
+                                headlineContent = {
+                                    Text(
+                                        update,
+                                        onTextLayout = {/*TODO*/ },
+                                        color = secondaryDark
+                                    )
+                                },
+                                leadingContent = {
+                                    Icon(
+                                        Icons.Filled.Info,
+                                        contentDescription = "Update",
+                                        tint = onBackgroundDark
+                                    )
+                                },
+                                colors = ListItemDefaults.colors(onSecondaryDark)
+                            )
+                            Divider()
+                        }
+                    }
+                }
             }
         }
     }
@@ -187,4 +262,10 @@ fun CoursesPrev() {
     CoursesCarousel()
 }
 
+@Preview
+@Composable
+private fun UpdatesPreview() {
+    val dummyUpdates = listOf("Update 1", "Update 2", "Update 3")
+    RecentUpdates(dummyUpdates)
+}
 
