@@ -2,6 +2,7 @@ package com.retardeddev.educonnect.ui.components.home
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -121,43 +122,53 @@ fun CoursesCarousel() {
             .width(360.dp)
             .height(214.dp)
     ) {
-        Row(modifier = Modifier.padding(20.dp, 5.dp))
-        {
-            Text(
-                text = "Courses",
-                style = MaterialTheme.typography.titleMedium,
-                color = onBackgroundDark,
-                modifier = Modifier
-                    .weight(1f) // This will take up the remaining space
-                    .padding(1.dp, 14.dp)
-                    .align(Alignment.CenterVertically) // Align to center vertically
-            )
-            FilledTonalButton(
-                onClick = { /*TODO*/ },
-                colors = ButtonDefaults.outlinedButtonColors(onSecondaryDark),
-                contentPadding = PaddingValues(0.dp),
-                modifier = Modifier
-                    .height(33.dp)
-                    .width(70.dp)
-                    .align(Alignment.CenterVertically) // Align to center vertically
-            ) {
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier.padding(8.dp) // Adjust this value to your preference
+        Column { // Use Column to stack the elements vertically
+            Row(modifier = Modifier.padding(20.dp, 5.dp))
+            {
+                Text(
+                    text = "Courses",
+                    style = MaterialTheme.typography.titleMedium,
+                    color = onBackgroundDark,
+                    modifier = Modifier
+                        .weight(1f) // This will take up the remaining space
+                        .padding(1.dp, 14.dp)
+                        .align(Alignment.CenterVertically) // Align to center vertically
+                )
+                FilledTonalButton(
+                    onClick = { /*TODO*/ },
+                    colors = ButtonDefaults.outlinedButtonColors(onSecondaryDark),
+                    contentPadding = PaddingValues(0.dp),
+                    modifier = Modifier
+                        .height(33.dp)
+                        .width(70.dp)
+                        .align(Alignment.CenterVertically) // Align to center vertically
                 ) {
-                    Icon(
-                        imageVector = Icons.Outlined.ArrowForward, // Replace with your own icon
-                        contentDescription = "Icon description", // Accessibility description
-                        tint = onBackgroundDark,
-                        modifier = Modifier.padding(2.dp)
-                    )
-                    Spacer(modifier = Modifier.width(4.dp))
-                    Text(
-                        "View",
-                        color = onBackgroundDark,
-                        fontSize = MaterialTheme.typography.labelMedium.fontSize,
-                    )
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        modifier = Modifier.padding(8.dp) // Adjust this value to your preference
+                    ) {
+                        Icon(
+                            imageVector = Icons.Outlined.ArrowForward, // Replace with your own icon
+                            contentDescription = "Icon description", // Accessibility description
+                            tint = onBackgroundDark,
+                            modifier = Modifier.padding(2.dp)
+                        )
+                        Spacer(modifier = Modifier.width(4.dp))
+                        Text(
+                            "View",
+                            color = onBackgroundDark,
+                            fontSize = MaterialTheme.typography.labelMedium.fontSize,
+                        )
+                    }
                 }
+            }
+            Box(modifier = Modifier.padding(0.dp, 0.dp, 0.dp, 10.dp)){
+                val imageList = listOf(
+                    R.drawable.ic_launcher_background,
+                    R.drawable.ic_launcher_background,
+                    R.drawable.ic_launcher_background
+                )
+                ImageCarousel(imageList = imageList)
             }
         }
     }
@@ -165,13 +176,15 @@ fun CoursesCarousel() {
 
 @Preview
 @Composable
-private fun PreviewWelcomeCard() {
+fun PreviewWelcomeCard() {
     @Suppress("SameParameterValue")
     WelcomeCard(name = "Pasindu Ranawakage")
 }
 
 @Preview
 @Composable
-private fun CoursesPrev() {
+fun CoursesPrev() {
     CoursesCarousel()
 }
+
+
