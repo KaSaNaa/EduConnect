@@ -12,9 +12,8 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.automirrored.outlined.ArrowForward
 import androidx.compose.material.icons.filled.Info
-import androidx.compose.material.icons.outlined.ArrowForward
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -22,7 +21,6 @@ import androidx.compose.material3.Divider
 import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.ListItem
-import androidx.compose.material3.ListItemColors
 import androidx.compose.material3.ListItemDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -44,16 +42,14 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.retardeddev.educonnect.R
 import com.retardeddev.educonnect.ui.theme.onBackgroundDark
-import com.retardeddev.educonnect.ui.theme.onSecondaryContainerDarkMediumContrast
 import com.retardeddev.educonnect.ui.theme.onSecondaryDark
 import com.retardeddev.educonnect.ui.theme.primaryContainerDark
-import com.retardeddev.educonnect.ui.theme.secondaryContainerDark
 import com.retardeddev.educonnect.ui.theme.secondaryDark
 
 
 @Suppress("SameParameterValue")
 @Composable
-private fun WelcomeCard(name: String) {
+fun WelcomeCard(name: String) {
     Card(
         colors = CardDefaults.cardColors(
             containerColor = primaryContainerDark
@@ -137,7 +133,7 @@ fun CoursesCarousel() {
                     text = "Courses",
                     style = MaterialTheme.typography.titleMedium,
                     color = onBackgroundDark,
-                    onTextLayout = {/*TODO*/},
+                    onTextLayout = {/*TODO*/ },
                     modifier = Modifier
                         .weight(1f) // This will take up the remaining space
                         .padding(1.dp, 14.dp)
@@ -157,7 +153,7 @@ fun CoursesCarousel() {
                         modifier = Modifier.padding(8.dp) // Adjust this value to your preference
                     ) {
                         Icon(
-                            imageVector = Icons.Outlined.ArrowForward, // Replace with your own icon
+                            imageVector = Icons.AutoMirrored.Outlined.ArrowForward, // Replace with your own icon
                             contentDescription = "Icon description", // Accessibility description
                             tint = onBackgroundDark,
                             modifier = Modifier.padding(2.dp)
@@ -166,13 +162,13 @@ fun CoursesCarousel() {
                         Text(
                             "View",
                             color = onBackgroundDark,
-                            onTextLayout = {/*TODO*/},
+                            onTextLayout = {/*TODO*/ },
                             fontSize = MaterialTheme.typography.labelMedium.fontSize,
                         )
                     }
                 }
             }
-            Box(modifier = Modifier.padding(0.dp, 0.dp, 0.dp, 10.dp)){
+            Box(modifier = Modifier.padding(0.dp, 0.dp, 0.dp, 10.dp)) {
                 val imageList = listOf(
                     R.drawable.ic_launcher_background,
                     R.drawable.ic_launcher_background,
@@ -221,7 +217,7 @@ fun RecentUpdates(updates: List<String>) {
                 Column {
                     Card(
                         colors = CardDefaults.cardColors(onSecondaryDark),
-                    ){
+                    ) {
                         updates.forEach { update ->
                             ListItem(
                                 headlineContent = {
