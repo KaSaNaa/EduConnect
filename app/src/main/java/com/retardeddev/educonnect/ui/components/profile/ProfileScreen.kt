@@ -4,16 +4,12 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
-import androidx.compose.material.icons.filled.Info
-import androidx.compose.material.icons.filled.KeyboardArrowRight
 import androidx.compose.material3.Card
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
@@ -30,11 +26,9 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import com.retardeddev.educonnect.R
 import com.retardeddev.educonnect.ui.theme.errorContainerDark
-import com.retardeddev.educonnect.ui.theme.errorDark
 import com.retardeddev.educonnect.ui.theme.onBackgroundDark
 import com.retardeddev.educonnect.ui.theme.onPrimaryContainerDark
 import com.retardeddev.educonnect.ui.theme.onSecondaryContainerLight
@@ -52,7 +46,7 @@ fun ProfilePicture() {
 
         horizontalAlignment = Alignment.CenterHorizontally,
 
-    ) {
+        ) {
         Image(
             painter = painterResource(id = R.drawable.ic_launcher_background),
             contentDescription = "image description",
@@ -86,7 +80,7 @@ private fun PersonalInfo() {
             .background(onSecondaryContainerLight)
             .padding(10.dp)
 
-    ){
+    ) {
         Text(
             text = "Personal information",
             onTextLayout = {/*to do*/ },
@@ -96,10 +90,18 @@ private fun PersonalInfo() {
 
             )
         Box(
-            Modifier.padding(10.dp,40.dp,10.dp,10.dp)
-        ){
-            val infoItemsList = listOf("Name", "Birthday", "Mobile Number", "Gender", "NIC", "Address", "Living City")
-           InfoItems(infoitems = infoItemsList )
+            Modifier.padding(10.dp, 40.dp, 10.dp, 10.dp)
+        ) {
+            val infoItemsList = listOf(
+                "Name",
+                "Birthday",
+                "Mobile Number",
+                "Gender",
+                "NIC",
+                "Address",
+                "Living City"
+            )
+            InfoItems(infoitems = infoItemsList)
         }
     }
 
@@ -109,51 +111,51 @@ private fun PersonalInfo() {
 @Composable
 private fun InfoItems(infoitems: List<String>) {
 
-        Column{
-            Card(modifier = Modifier.padding(10.dp)){
-                infoitems.forEach { infoItem ->
-                    ListItem(
-                        headlineContent = {
-                            Text(
-                                infoItem,
-                                onTextLayout = {/*TODO*/ },
-                                color = secondaryDark
+    Column {
+        Card(modifier = Modifier.padding(10.dp)) {
+            infoitems.forEach { infoItem ->
+                ListItem(
+                    headlineContent = {
+                        Text(
+                            infoItem,
+                            onTextLayout = {/*TODO*/ },
+                            color = secondaryDark
 
 
-                            )
+                        )
 
-                        },
-                        trailingContent = {
-                            Icon(
-                                Icons.AutoMirrored.Filled.KeyboardArrowRight,
-                                contentDescription = "Update",
-                                tint = onBackgroundDark
-                            )
-                        },
-                        colors = ListItemDefaults.colors(onSecondaryDark),
-                    )
-                    Divider(
-                        modifier = Modifier
-                            .width(350.dp)
-                            .align(Alignment.CenterHorizontally)
-                    )
-                }
+                    },
+                    trailingContent = {
+                        Icon(
+                            Icons.AutoMirrored.Filled.KeyboardArrowRight,
+                            contentDescription = "Update",
+                            tint = onBackgroundDark
+                        )
+                    },
+                    colors = ListItemDefaults.colors(onSecondaryDark),
+                )
+                Divider(
+                    modifier = Modifier
+                        .width(350.dp)
+                        .align(Alignment.CenterHorizontally)
+                )
             }
         }
+    }
 }
+
 @Composable
 private fun PreviewInfoItem() {
-    val infoItemsList = listOf("Name", "Birthday", "Mobile Number", "Gender", "NIC", "Address", "Living City")
+    val infoItemsList =
+        listOf("Name", "Birthday", "Mobile Number", "Gender", "NIC", "Address", "Living City")
     InfoItems(infoitems = infoItemsList)
 }
-
-
 
 
 @Preview
 @Composable
 private fun AccocuntManagement() {
-    Column{
+    Column {
         Box(
             modifier = Modifier
                 .background(onSecondaryContainerLight)
@@ -168,8 +170,8 @@ private fun AccocuntManagement() {
                 color = onPrimaryContainerDark,
             )
             Box(
-                Modifier.padding(10.dp,40.dp,10.dp,10.dp)
-            ){
+                Modifier.padding(10.dp, 40.dp, 10.dp, 10.dp)
+            ) {
                 AccountDelete()
             }
         }
@@ -180,10 +182,10 @@ private fun AccocuntManagement() {
 
 
 @Composable
-private fun AccountDelete(deleteItems: List<String> = listOf("Delete Account","Log Out")) {
+private fun AccountDelete(deleteItems: List<String> = listOf("Delete Account", "Log Out")) {
 
-    Column{
-        Card(modifier = Modifier.padding(10.dp)){
+    Column {
+        Card(modifier = Modifier.padding(10.dp)) {
             deleteItems.forEach { deleteItems ->
                 ListItem(
                     headlineContent = {
@@ -213,5 +215,5 @@ private fun AccountDelete(deleteItems: List<String> = listOf("Delete Account","L
             }
         }
     }
-    
+
 }
