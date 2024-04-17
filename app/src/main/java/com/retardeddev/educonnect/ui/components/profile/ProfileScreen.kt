@@ -1,12 +1,17 @@
 package com.retardeddev.educonnect.ui.components.profile
 
+import android.widget.ScrollView
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowRight
@@ -38,13 +43,15 @@ import com.retardeddev.educonnect.ui.theme.onSecondaryDark
 import com.retardeddev.educonnect.ui.theme.secondaryDark
 
 
-@Preview
+//@Preview
 @Composable
 fun ProfilePicture() {
     Column(
         modifier = Modifier
             .background(onSecondaryContainerLight)
             .padding(20.dp),
+
+
 
         horizontalAlignment = Alignment.CenterHorizontally,
 
@@ -73,7 +80,7 @@ fun ProfilePicture() {
 
 }
 
-@Preview
+//@Preview
 @Composable
 private fun PersonalInfo() {
 
@@ -154,7 +161,7 @@ private fun PreviewInfoItem() {
 }
 
 
-@Preview
+//@Preview
 @Composable
 private fun AccocuntManagement() {
     Column {
@@ -219,3 +226,24 @@ private fun AccountDelete(deleteItems: List<String> = listOf("Delete Account", "
     }
 
 }
+@Preview
+@Composable
+fun CombinedScreen() {
+
+
+        LazyColumn(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(16.dp)
+                .background(onSecondaryContainerLight)
+        ) {
+            item{
+                ProfilePicture()
+                Spacer(modifier = Modifier.height(16.dp))
+                PersonalInfo()
+                Spacer(modifier = Modifier.height(16.dp))
+                AccocuntManagement()
+            }
+        }
+    }
+
