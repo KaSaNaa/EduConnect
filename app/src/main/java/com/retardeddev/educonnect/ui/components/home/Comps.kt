@@ -12,8 +12,8 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.outlined.ArrowForward
 import androidx.compose.material.icons.filled.Info
+import androidx.compose.material.icons.outlined.ArrowForward
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -153,7 +153,7 @@ fun CoursesCarousel() {
                         modifier = Modifier.padding(8.dp) // Adjust this value to your preference
                     ) {
                         Icon(
-                            imageVector = Icons.AutoMirrored.Outlined.ArrowForward, // Replace with your own icon
+                            imageVector = Icons.Outlined.ArrowForward, // Replace with your own icon
                             contentDescription = "Icon description", // Accessibility description
                             tint = onBackgroundDark,
                             modifier = Modifier.padding(2.dp)
