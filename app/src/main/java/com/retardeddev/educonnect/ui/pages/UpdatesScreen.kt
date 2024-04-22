@@ -1,13 +1,9 @@
 package com.retardeddev.educonnect.ui.pages
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -18,17 +14,15 @@ import androidx.compose.ui.text.font.FontWeight.Companion.Bold
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.retardeddev.educonnect.ui.components.updates.UpdatesList
+import com.retardeddev.educonnect.ui.pages.global.ColumnGlobal
 import com.retardeddev.educonnect.ui.theme.onBackgroundDark
-import com.retardeddev.educonnect.ui.theme.onSecondaryContainerLight
 
 @Preview
 @Composable
 private fun UpdatesScreen() {
-    Column(
-        modifier = Modifier
-            .width(412.dp)
-            .height(768.dp)
-            .background(onSecondaryContainerLight)
+    ColumnGlobal(
+        verticalArrangement = Arrangement.
+        spacedBy(30.dp, Alignment.Top)
     ) {
         Row {
             Text(

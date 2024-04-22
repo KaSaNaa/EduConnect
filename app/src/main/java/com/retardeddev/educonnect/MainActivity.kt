@@ -7,7 +7,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import com.retardeddev.educonnect.data.repository.DatabaseHelper
-import com.retardeddev.educonnect.ui.pages.courses.FinalDetailPage
+import com.retardeddev.educonnect.ui.pages.courses.CourseDetailsScreen
 import com.retardeddev.educonnect.ui.theme.AppTheme
 import com.retardeddev.educonnect.ui.theme.backgroundDark
 
@@ -21,7 +21,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize()) {
                     val dbHelper = DatabaseHelper(this)
                     dbHelper.logAllCourses()
-                    FinalDetailPage(dbHelper, 1)
+                    CourseDetailsScreen()
                 }
             }
         }
