@@ -10,7 +10,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.retardeddev.educonnect.ui.components.profile.AccocuntManagement
+import com.retardeddev.educonnect.ui.components.profile.AccountManagement
 import com.retardeddev.educonnect.ui.components.profile.PersonalInfo
 import com.retardeddev.educonnect.ui.components.profile.ProfilePicture
 import com.retardeddev.educonnect.ui.pages.global.ColumnGlobal
@@ -27,6 +27,6 @@ private fun ProfileScreen() {
         Spacer(modifier = Modifier.height(16.dp))
         PersonalInfo()
         Spacer(modifier = Modifier.height(16.dp))
-        AccocuntManagement()
+        AccountManagement()
     }
 }

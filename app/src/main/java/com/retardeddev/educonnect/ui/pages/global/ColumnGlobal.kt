@@ -20,7 +20,7 @@ fun ColumnGlobal(
     Column(
         verticalArrangement = verticalArrangement,
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier
+        modifier = modifier
             .width(412.dp)
             .height(768.dp)
             .background(onSecondaryContainerLight)

@@ -26,6 +26,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.retardeddev.educonnect.R
 import com.retardeddev.educonnect.ui.theme.errorContainerDark
@@ -43,7 +44,6 @@ fun ProfilePicture() {
         modifier = Modifier
             .background(onSecondaryContainerLight)
             .padding(20.dp),
-
 
 
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -95,13 +95,7 @@ fun PersonalInfo() {
             Modifier.padding(10.dp, 40.dp, 10.dp, 10.dp)
         ) {
             val infoItemsList = listOf(
-                "Name",
-                "Birthday",
-                "Mobile Number",
-                "Gender",
-                "NIC",
-                "Address",
-                "Living City"
+                "Name", "Birthday", "Mobile Number", "Gender", "NIC", "Address", "Living City"
             )
             InfoItems(infoitems = infoItemsList)
         }
@@ -119,9 +113,7 @@ private fun InfoItems(infoitems: List<String>) {
                 ListItem(
                     headlineContent = {
                         Text(
-                            infoItem,
-                            onTextLayout = {/*TODO*/ },
-                            color = secondaryDark
+                            infoItem, onTextLayout = {/*TODO*/ }, color = secondaryDark
 
 
                         )
@@ -146,17 +138,9 @@ private fun InfoItems(infoitems: List<String>) {
     }
 }
 
+@Preview
 @Composable
-private fun PreviewInfoItem() {
-    val infoItemsList =
-        listOf("Name", "Birthday", "Mobile Number", "Gender", "NIC", "Address", "Living City")
-    InfoItems(infoitems = infoItemsList)
-}
-
-
-//@Preview
-@Composable
-fun AccocuntManagement() {
+fun AccountManagement() {
     Column {
         Box(
             modifier = Modifier
@@ -177,9 +161,7 @@ fun AccocuntManagement() {
                 AccountDelete()
             }
         }
-
     }
-
 }
 
 
@@ -192,13 +174,8 @@ private fun AccountDelete(deleteItems: List<String> = listOf("Delete Account", "
                 ListItem(
                     headlineContent = {
                         Text(
-                            deleteItems,
-                            onTextLayout = {/*TODO*/ },
-                            color = errorContainerDark
-
-
+                            deleteItems, onTextLayout = {/*TODO*/ }, color = errorContainerDark
                         )
-
                     },
                     trailingContent = {
                         Icon(
