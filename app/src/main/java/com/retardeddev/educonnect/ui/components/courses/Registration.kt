@@ -9,9 +9,9 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.outlined.ArrowForward
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.outlined.Check
+import androidx.compose.material.icons.rounded.Close
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.DatePicker
@@ -230,7 +230,7 @@ fun OutlinedButtonWithIcon() {
             modifier = Modifier.padding(11.dp) // Adjust this value to your preference
         ) {
             Icon(
-                imageVector = Icons.AutoMirrored.Outlined.ArrowForward, // Replace with your own icon
+                imageVector = Icons.Rounded.Close, // Replace with your own icon
                 contentDescription = "Icon description", // Accessibility description
                 tint = onBackgroundDark,
                 modifier = Modifier.padding(3.dp)
