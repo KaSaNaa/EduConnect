@@ -8,7 +8,7 @@ enum class Screen {
 }
 sealed class NavigationItem(val route: String) {
     object Home : NavigationItem(Screen.HOME.name)
-    object Login : NavigationItem(Screen.UPDATES.name)
+    object Updates : NavigationItem(Screen.UPDATES.name)
     object Profile : NavigationItem(Screen.PROFILE.name)
     object Splash : NavigationItem(Screen.SPLASH.name)
 }
