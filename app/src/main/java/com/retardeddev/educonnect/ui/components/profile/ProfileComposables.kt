@@ -74,7 +74,7 @@ fun ProfilePicture() {
 
 }
 
-//@Preview
+@Preview
 @Composable
 fun PersonalInfo() {
 
@@ -104,7 +104,6 @@ fun PersonalInfo() {
 
 
 }
-
 @Composable
 private fun InfoItems(infoitems: List<String>) {
 
@@ -114,7 +113,8 @@ private fun InfoItems(infoitems: List<String>) {
                 ListItem(
                     headlineContent = {
                         Text(
-                            infoItem, onTextLayout = {/*TODO*/ }, color = secondaryDark
+                            infoItem, onTextLayout = {/*TODO*/ },
+                            color = secondaryDark
                         )
                     },
                     trailingContent = {
@@ -137,7 +137,7 @@ private fun InfoItems(infoitems: List<String>) {
     }
 }
 
-@Preview
+//@Preview
 @Composable
 fun AccountManagement() {
     Column {
