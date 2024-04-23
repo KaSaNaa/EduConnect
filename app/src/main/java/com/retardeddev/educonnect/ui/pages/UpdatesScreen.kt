@@ -19,7 +19,7 @@ import com.retardeddev.educonnect.ui.theme.onBackgroundDark
 
 @Preview
 @Composable
-private fun UpdatesScreen() {
+fun UpdatesScreen() {
     ColumnGlobal(
         verticalArrangement = Arrangement.
         spacedBy(30.dp, Alignment.Top)
