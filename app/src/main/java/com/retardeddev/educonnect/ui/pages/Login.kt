@@ -1,4 +1,4 @@
-package com.retardeddev.educonnect.ui.components.login
+package com.retardeddev.educonnect.ui.pages
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
