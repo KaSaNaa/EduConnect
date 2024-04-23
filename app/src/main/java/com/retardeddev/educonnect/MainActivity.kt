@@ -1,13 +1,13 @@
 package com.retardeddev.educonnect
 
+import AppNavHost
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
-import com.retardeddev.educonnect.data.repository.DatabaseHelper
-import com.retardeddev.educonnect.ui.pages.courses.CourseDetailsScreen
+import androidx.navigation.compose.rememberNavController
 import com.retardeddev.educonnect.ui.theme.AppTheme
 import com.retardeddev.educonnect.ui.theme.backgroundDark
 
@@ -18,10 +18,10 @@ class MainActivity : ComponentActivity() {
             AppTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(color = backgroundDark,
-                    modifier = Modifier.fillMaxSize()) {
-                    val dbHelper = DatabaseHelper(this)
-                    dbHelper.logAllCourses()
-                    CourseDetailsScreen()
+                    modifier = Modifier.fillMaxSize()
+                ) {
+                    val navController = rememberNavController()
+                    AppNavHost(navController = navController)
                 }
             }
         }

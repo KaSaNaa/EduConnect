@@ -15,13 +15,14 @@ import androidx.compose.material3.contentColorFor
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavController
+import com.retardeddev.educonnect.navigation.NavigationItem
 import com.retardeddev.educonnect.ui.theme.onSurfaceVariantDark
 import com.retardeddev.educonnect.ui.theme.surfaceContainerDark
 
-@Preview
+
 @Composable
-private fun BottomBar() {
+fun BottomBar(navController: NavController) {
     BottomAppBar(
         containerColor = surfaceContainerDark,
         contentColor = contentColorFor(surfaceContainerDark),
@@ -32,7 +33,7 @@ private fun BottomBar() {
             horizontalArrangement = Arrangement.SpaceBetween, // This places the maximum space possible between each IconButton
             verticalAlignment = Alignment.CenterVertically
         ){
-            IconButton(onClick = { /*TODO*/ }, modifier = Modifier.weight(1f)) {
+            IconButton(onClick = { navController.navigate(NavigationItem.Home.route) }, modifier = Modifier.weight(1f)) {
                 Icon(
                     imageVector = Icons.Outlined.Home,
                     contentDescription = "Home",
@@ -40,7 +41,7 @@ private fun BottomBar() {
                     modifier = Modifier.fillMaxSize(0.8f)
                 )
             }
-            IconButton(onClick = { /*TODO*/ }, modifier = Modifier.weight(1f)) {
+            IconButton(onClick = { navController.navigate(NavigationItem.Updates.route) }, modifier = Modifier.weight(1f)) {
                 Icon(
                     imageVector = Icons.Outlined.Notifications,
                     contentDescription = "Updates",
@@ -48,7 +49,7 @@ private fun BottomBar() {
                     modifier = Modifier.fillMaxSize(0.8f)
                 )
             }
-            IconButton(onClick = { /*TODO*/ }, modifier = Modifier.weight(1f)) {
+            IconButton(onClick = { navController.navigate(NavigationItem.Profile.route) }, modifier = Modifier.weight(1f)) {
                 Icon(
                     imageVector = Icons.Outlined.AccountCircle,
                     contentDescription = "Profile",

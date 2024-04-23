@@ -1,10 +1,18 @@
 
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.retardeddev.educonnect.navigation.NavigationItem
+import com.retardeddev.educonnect.ui.components.BottomBar
 import com.retardeddev.educonnect.ui.pages.HomeScreen
 import com.retardeddev.educonnect.ui.pages.ProfileScreen
 import com.retardeddev.educonnect.ui.pages.SplashScreen
@@ -14,25 +22,49 @@ import com.retardeddev.educonnect.ui.pages.UpdatesScreen
 fun AppNavHost(
     modifier: Modifier = Modifier,
     navController: NavHostController,
-    startDestination: String = NavigationItem.Splash.route,
-
-    ) {
+    startDestination: String = NavigationItem.Splash.route
+) {
     NavHost(
         modifier = modifier,
         navController = navController,
         startDestination = startDestination
     ) {
         composable(NavigationItem.Splash.route) {
-            SplashScreen()
+            SplashScreen(navController)
         }
         composable(NavigationItem.Home.route) {
-            HomeScreen()
+            ScreenWithBottomBar(navController) {
+                HomeScreen()
+            }
         }
         composable(NavigationItem.Profile.route) {
-            ProfileScreen()
+            ScreenWithBottomBar(navController) {
+                ProfileScreen()
+            }
         }
         composable(NavigationItem.Updates.route) {
-            UpdatesScreen()
+            ScreenWithBottomBar(navController) {
+                UpdatesScreen()
+            }
         }
     }
+}
+
+@Composable
+fun ScreenWithBottomBar(navController: NavController, screenContent: @Composable () -> Unit) {
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        screenContent()
+        BottomBar(navController = navController)
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun PreviewAppNavHost() {
+    val navController = rememberNavController()
+    AppNavHost(navController = navController)
 }
