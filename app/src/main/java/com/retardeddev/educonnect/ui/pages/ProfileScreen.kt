@@ -17,7 +17,7 @@ import com.retardeddev.educonnect.ui.pages.global.ColumnGlobal
 
 @Preview
 @Composable
-private fun ProfileScreen() {
+fun ProfileScreen() {
     val scrollState = rememberScrollState()
     ColumnGlobal(
         verticalArrangement = Arrangement.spacedBy(10.dp, Alignment.CenterVertically),

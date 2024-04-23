@@ -3,6 +3,7 @@ package com.retardeddev.educonnect.ui.components.profile
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
@@ -124,6 +125,7 @@ private fun InfoItems(infoitems: List<String>) {
                         )
                     },
                     colors = ListItemDefaults.colors(onSecondaryDark),
+                    modifier = Modifier.clickable { /* TODO */ }
                 )
                 HorizontalDivider(
                     modifier = Modifier
