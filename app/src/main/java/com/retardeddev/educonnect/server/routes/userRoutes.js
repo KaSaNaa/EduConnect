@@ -1,9 +1,46 @@
 const express = require('express');
 const router = express.Router();
 const { User } = require('../models/models');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
 // Middleware for authentication
 const authenticate = require('../auth/authenticate');
+
+router.post('/signup', async (req, res) => {
+    // Hash the password
+    const hashedPassword = await bcrypt.hash(req.body.password, 8);
+
+    // Create a new user
+    const user = new User({ ...req.body, password: hashedPassword });
+    await user.save();
+
+    // Generate a token
+    const token = jwt.sign({ id: user._id }, 'YOUR_SECRET_KEY');
+
+    res.status(201).json({ user, token });
+});
+
+router.post('/login', async (req, res) => {
+    // Find the user
+    const user = await User.findOne({ email: req.body.email });
+
+    if (!user) {
+        return res.status(400).json({ message: 'Invalid login credentials' });
+    }
+
+    // Check the password
+    const isPasswordMatch = await bcrypt.compare(req.body.password, user.password);
+
+    if (!isPasswordMatch) {
+        return res.status(400).json({ message: 'Invalid login credentials' });
+    }
+
+    // Generate a token
+    const token = jwt.sign({ id: user._id }, 'YOUR_SECRET_KEY');
+
+    res.json({ user, token });
+});
 
 router.get('/', authenticate, async (req, res) => {
     // Return the info of signed in user
@@ -20,12 +57,6 @@ router.delete('/', authenticate, async (req, res) => {
     // Delete the signed in user
     await User.findByIdAndDelete(req.user._id);
     res.json({ message: 'User deleted' });
-});
-
-router.put('/', authenticate, async (req, res) => {
-    // Replace the user with the request body
-    const replacedUser = await User.findByIdAndUpdate(req.user._id, req.body, { new: true, overwrite: true });
-    res.json(replacedUser);
 });
 
 module.exports = router;
