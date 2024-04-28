@@ -3,20 +3,20 @@ const router = express.Router();
 const { User } = require('../models/models');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const { BCRYPT_SALT_ROUNDS, JWT_SECRET, JWT_EXPIRATION } = require('../configs/config');
 
 // Middleware for authentication
 const authenticate = require('../auth/authenticate');
-
 router.post('/signup', async (req, res) => {
     // Hash the password
-    const hashedPassword = await bcrypt.hash(req.body.password, 8);
+    const hashedPassword = await bcrypt.hash(req.body.password, BCRYPT_SALT_ROUNDS);
 
     // Create a new user
     const user = new User({ ...req.body, password: hashedPassword });
     await user.save();
 
     // Generate a token
-    const token = jwt.sign({ id: user._id }, 'YOUR_SECRET_KEY');
+    const token = jwt.sign({ id: user._id }, JWT_SECRET);
 
     res.status(201).json({ user, token });
 });
@@ -37,7 +37,7 @@ router.post('/login', async (req, res) => {
     }
 
     // Generate a token
-    const token = jwt.sign({ id: user._id }, 'YOUR_SECRET_KEY');
+    const token = jwt.sign({ id: user._id }, JWT_SECRET, JWT_EXPIRATION);
 
     res.json({ user, token });
 });

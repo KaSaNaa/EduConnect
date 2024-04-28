@@ -1,12 +1,13 @@
 const jwt = require('jsonwebtoken');
 const { User } = require('../models/models');
+const { JWT_SECRET } = require('../configs/config');
 
 const authenticate = async (req, res, next) => {
     try {
         // Get the token from the Authorization header
         const token = req.headers.authorization.split(' ')[1];
         // Verify the token
-        const decoded = jwt.verify(token, 'secretkey');
+        const decoded = jwt.verify(token, JWT_SECRET);
         // Find the user associated with the token
         const user = await User.findById(decoded.id);
 
