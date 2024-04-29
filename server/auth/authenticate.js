@@ -8,8 +8,10 @@ const authenticate = async (req, res, next) => {
         const token = req.headers.authorization.split(' ')[1];
         // Verify the token
         const decoded = jwt.verify(token, JWT_SECRET);
+        console.log(decoded);
         // Find the user associated with the token
         const user = await User.findById(decoded.id);
+        console.log(user);
 
         if (!user) {
             throw new Error();

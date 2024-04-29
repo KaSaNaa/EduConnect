@@ -10,8 +10,7 @@ const UserSchema = new mongoose.Schema({
     email: { type: String, required: true },
     phoneNumber: { type: String, required: true },
     gender: { type: Boolean, required: true},
-    dob: { type: String, required: true},
-    password: { type: String, required: true }
+    dob: { type: String, required: true}
 });
 
 const CourseSchema = new mongoose.Schema({
