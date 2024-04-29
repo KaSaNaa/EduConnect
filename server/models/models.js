@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 const UserSchema = new mongoose.Schema({
+    id: { type: Number, required: true, autoIncrement: true },
     username: { type: String, required: true },
     fullName: { type: String, required: true},
     address: { type: String, required: true},
@@ -14,6 +15,7 @@ const UserSchema = new mongoose.Schema({
 });
 
 const CourseSchema = new mongoose.Schema({
+    id: { type: Number, required: true, autoIncrement: true },
     title: { type: String, required: true },
     description: { type: String, required: true },
     commencement: { type: String, required: true },
