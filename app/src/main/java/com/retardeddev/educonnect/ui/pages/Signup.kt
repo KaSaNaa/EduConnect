@@ -236,16 +236,13 @@ fun DatePicker(context: Context) {
                     val year = calendar.get(Calendar.YEAR)
                     val month = calendar.get(Calendar.MONTH)
                     val day = calendar.get(Calendar.DAY_OF_MONTH)
-                    val dpd = DatePickerDialog(context, null, year, month, day)
-                    dpd.datePicker.init(year, month, day, null)
-                    dpd.setButton(DialogInterface.BUTTON_POSITIVE, "OK") { _, _ ->
-                        val monthOfYear = dpd.datePicker.month
-                        val dayOfMonth = dpd.datePicker.dayOfMonth
-                        val year = dpd.datePicker.year
+                    val dpd = DatePickerDialog(context, { _, year, monthOfYear, dayOfMonth ->
                         // Format the selected date and set it as the value of the text field
                         text = "${monthOfYear + 1}/$dayOfMonth/$year"
-                        dpd.dismiss()
                         focusRequester.requestFocus()
+                    }, year, month, day)
+                    dpd.setButton(DialogInterface.BUTTON_NEGATIVE, "Cancel") { _, _ ->
+                        dpd.dismiss()
                     }
                     dpd.show()
                 }
@@ -260,5 +257,4 @@ fun DatePicker(context: Context) {
         )
     )
 }
-
 
