@@ -1,6 +1,7 @@
 const { User } = require('../models/models');
 const jwt = require('jsonwebtoken');
 const { JWT_SECRET } = require('../configs/config');
+const { codes } = require('./emailSender');
 
 exports.signup = async (req, res) => {
 
@@ -41,13 +42,13 @@ exports.login = (req, res) => {
     // Step 4: Verify the code
     if (codes[email] === code) {
       // Code is correct, log in the user
-      const token = jwt.sign({ id: user._id }, JWT_SECRET, { expiresIn: '1h' });
+      const token = jwt.sign({ id: User._id }, JWT_SECRET, { expiresIn: '1h' });
       res.json({ token });
     } else {
       // Code is incorrect, send an error
       res.status(401).send('Invalid code');
     }
-  };
+};
 
 exports.getUser = async (req, res) => {
     // Return the info of signed in user

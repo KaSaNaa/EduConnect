@@ -43,3 +43,5 @@ exports.sendCode = async (req, res) => {
 
   res.send("Code sent");
 };
+
+exports.codes = codes
