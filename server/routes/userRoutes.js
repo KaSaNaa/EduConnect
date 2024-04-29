@@ -7,6 +7,7 @@ const { sendCode } = require('../controllers/emailSender');
 router.post('/signup', signup);
 
 router.post('/sendcode', sendCode)
+
 router.post('/login', login);
 
 router.get('/', authenticate, getUser);

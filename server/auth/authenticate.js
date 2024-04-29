@@ -14,7 +14,7 @@ const authenticate = async (req, res, next) => {
         console.log(user);
 
         if (!user) {
-            throw new Error();
+            return res.status(401).send({ error: 'User does not exist. Please sign up before signing in.' });
         }
 
         // Add the user to the request object
