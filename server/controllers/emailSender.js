@@ -1,6 +1,7 @@
 const nodemailer = require("nodemailer");
 const crypto = require("crypto");
 const { GMAIL, APP_PASSWORD_GMAIL } = require("../configs/config");
+const { User } = require("../models/models");
 
 // Store codes in memory for simplicity
 // In a real application, you would store these in your database
@@ -33,7 +34,11 @@ exports.sendCode = async (req, res) => {
     from: "EduConnect",
     to: email,
     subject: "Your login code",
-    text: `Your login code is ${code}`,
+    html: `
+    <h1 style="color: #444;">Welcome to EduConnect</h1>
+    <p style="font-size: 16px; color: #666;">Your login code is:</p>
+    <p style="font-size: 24px; font-weight: bold; color: #333;">${code}</p>
+`,
   });
 
   res.send("Code sent");

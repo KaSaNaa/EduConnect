@@ -1,14 +1,11 @@
 const { User } = require('../models/models');
-const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const { JWT_SECRET } = require('../configs/config');
 
 exports.signup = async (req, res) => {
-    // Hash the password
-    const hashedPassword = await bcrypt.hash(req.body.password, BCRYPT_SALT_ROUNDS);
 
     // Create a new user
-    const user = new User({ ...req.body, password: hashedPassword });
+    const user = new User(req.body);
     await user.save();
 
     // Generate a token

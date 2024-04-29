@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
+const AutoIncrement = require('mongoose-sequence')(mongoose);
 
 const UserSchema = new mongoose.Schema({
-    id: { type: Number, required: true, autoIncrement: true },
+    uid: { type: Number },
     username: { type: String, required: true },
     fullName: { type: String, required: true},
     address: { type: String, required: true},
@@ -13,8 +14,10 @@ const UserSchema = new mongoose.Schema({
     dob: { type: String, required: true}
 });
 
+UserSchema.plugin(AutoIncrement, {inc_field: 'uid'});
+
 const CourseSchema = new mongoose.Schema({
-    id: { type: Number, required: true, autoIncrement: true },
+    cid: { type: Number },
     title: { type: String, required: true },
     description: { type: String, required: true },
     commencement: { type: String, required: true },
@@ -22,10 +25,11 @@ const CourseSchema = new mongoose.Schema({
     fee: { type: String, required: true },
     maxParticipants: { type: Number, required: true },
     branches: { type: String, required: true },
-    registrationClosing: { type: String, required: true }
 });
 
-const User = mongoose.model('User', UserSchema);
-const Course = mongoose.model('Course', CourseSchema);
+CourseSchema.plugin(AutoIncrement, {inc_field: 'cid'});
 
-module.exports = { User, Course };
+const Course = mongoose.model('Course', CourseSchema);
+const User = mongoose.model('User', UserSchema);
+
+module.exports = { User, Course }
