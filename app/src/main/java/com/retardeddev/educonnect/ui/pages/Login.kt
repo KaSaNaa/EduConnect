@@ -16,6 +16,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
@@ -29,10 +30,11 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
 import com.retardeddev.educonnect.R
+import com.retardeddev.educonnect.navigation.NavigationItem
 import com.retardeddev.educonnect.ui.theme.inverseOnSurfaceLight
 import com.retardeddev.educonnect.ui.theme.onPrimaryDark
 import com.retardeddev.educonnect.ui.theme.onSecondaryContainerDark
@@ -44,9 +46,8 @@ import com.retardeddev.educonnect.ui.theme.surfaceContainerHighestDark
 import com.retardeddev.educonnect.viewModel.UserViewModel
 
 
-@Preview
 @Composable
-private fun LoginForm() {
+fun LoginForm(navController: NavController) {
     val viewModel: UserViewModel = viewModel()
     var email by remember { mutableStateOf("") }
     var code by remember { mutableStateOf("") }
@@ -77,11 +78,13 @@ private fun LoginForm() {
                 placeholder = { Text("Enter your Email") },
                 modifier = Modifier.width(275.dp),
                 trailingIcon = {
-                    Icon(
-                        Icons.Filled.Email,
-                        contentDescription = "email",
-                        tint = onSecondaryContainerDark
-                    )
+                    IconButton(onClick = { viewModel.sendCode(email) }) {
+                        Icon(
+                            Icons.Filled.Email,
+                            contentDescription = "email",
+                            tint = onSecondaryContainerDark
+                        )
+                    }
                 },
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = outlineDark,
@@ -163,7 +166,7 @@ private fun LoginForm() {
             Spacer(modifier = Modifier.height(16.dp))
 
             OutlinedButton(
-                onClick = { /*TODO: Handle click event*/ },
+                onClick = { navController.navigate(NavigationItem.SignUp.route) },
                 modifier = Modifier
                     .width(148.dp)
                     .height(40.dp),

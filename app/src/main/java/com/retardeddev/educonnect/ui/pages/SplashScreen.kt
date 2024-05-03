@@ -24,8 +24,8 @@ fun SplashScreen(navController: NavController) {
 
     // Launch a coroutine to delay for a certain time, then navigate to the home screen
     LaunchedEffect(Unit) {
-        delay(3000) // delay for 3 seconds
-        navController.navigate(NavigationItem.Home.route) {
+        delay(1000) // delay for 3 seconds
+        navController.navigate(NavigationItem.SignIn.route) {
             // Pop up to the start destination of the graph to
             // avoid building up a large stack of destinations
             // on the back stack as users select items

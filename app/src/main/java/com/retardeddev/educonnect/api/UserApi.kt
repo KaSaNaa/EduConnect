@@ -1,3 +1,5 @@
+package com.retardeddev.educonnect.api
+
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.POST
@@ -8,5 +10,8 @@ interface UserApi {
 
     @POST("/login")
     fun login(@Body request: LoginRequest): Call<LoginResponse>
+
+    @POST("/send-code")
+    fun sendCode(@Body request: LoginRequest): Call<Unit>
 
 }

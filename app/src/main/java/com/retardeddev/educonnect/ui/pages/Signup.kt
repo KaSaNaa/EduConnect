@@ -23,8 +23,6 @@ import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.DatePicker
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedButton
@@ -33,8 +31,6 @@ import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextFieldDefaults
-import androidx.compose.material3.rememberDatePickerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -50,13 +46,10 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.retardeddev.educonnect.R
 import com.retardeddev.educonnect.ui.theme.inverseOnSurfaceLight
 import com.retardeddev.educonnect.ui.theme.onPrimaryDark
-import com.retardeddev.educonnect.ui.theme.onSecondaryContainerDark
 import com.retardeddev.educonnect.ui.theme.onSecondaryContainerLight
-import com.retardeddev.educonnect.ui.theme.onSurfaceDark
 import com.retardeddev.educonnect.ui.theme.onSurfaceVariantDark
 import com.retardeddev.educonnect.ui.theme.outlineDark
 import com.retardeddev.educonnect.ui.theme.outlineVariantDark
@@ -64,7 +57,7 @@ import com.retardeddev.educonnect.ui.theme.primaryDark
 
 @Preview
 @Composable
-private fun SignupForm() {
+fun SignupForm() {
     Surface {
         Column(
             modifier = Modifier

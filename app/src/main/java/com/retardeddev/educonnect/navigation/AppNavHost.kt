@@ -14,7 +14,9 @@ import androidx.navigation.compose.rememberNavController
 import com.retardeddev.educonnect.navigation.NavigationItem
 import com.retardeddev.educonnect.ui.components.BottomBar
 import com.retardeddev.educonnect.ui.pages.HomeScreen
+import com.retardeddev.educonnect.ui.pages.LoginForm
 import com.retardeddev.educonnect.ui.pages.ProfileScreen
+import com.retardeddev.educonnect.ui.pages.SignupForm
 import com.retardeddev.educonnect.ui.pages.SplashScreen
 import com.retardeddev.educonnect.ui.pages.UpdatesScreen
 
@@ -31,6 +33,12 @@ fun AppNavHost(
     ) {
         composable(NavigationItem.Splash.route) {
             SplashScreen(navController)
+        }
+        composable(NavigationItem.SignIn.route) {
+            LoginForm(navController)
+        }
+        composable(NavigationItem.SignUp.route) {
+            SignupForm()
         }
         composable(NavigationItem.Home.route) {
             ScreenWithBottomBar(navController) {

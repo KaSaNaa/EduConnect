@@ -24,7 +24,7 @@ const CourseSchema = new mongoose.Schema({
     duration: { type: String, required: true },
     fee: { type: String, required: true },
     maxParticipants: { type: Number, required: true },
-    branches: { type: String, required: true },
+    branches: [{ type: String, required: true }],
 });
 
 CourseSchema.plugin(AutoIncrement, {inc_field: 'cid'});
