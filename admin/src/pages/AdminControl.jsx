@@ -11,11 +11,20 @@ export default function AdminControl() {
         fetchCourses();
     }, []);
 
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            fetchCourses();
+        }, 300); // Debounce time in milliseconds
+
+        return () => {
+            clearTimeout(timer);
+        };
+    }, [searchTerm]); // Trigger fetchCourses when searchTerm changes after debounce time
+
     const fetchCourses = async () => {
         try {
-            // For now, let's keep it empty as you mentioned it's not connected to the database
-            // const response = await axios.get('/api/courses');
-            // setCourses(response.data);
+            const response = await axios.get('http://localhost:3000/course');
+            setCourses(response.data); // Make sure response.data is an array
             setLoading(false); // Set loading to false after data is fetched
         } catch (error) {
             console.error('Error fetching courses:', error);
@@ -37,8 +46,6 @@ export default function AdminControl() {
                     value={searchTerm}
                     onChange={handleSearchChange}
                 />
-                {/* You can add a button for search functionality if needed */}
-                {/* <button onClick={handleSearch}>Search</button> */}
             </div>
             <table>
                 <thead>
@@ -54,9 +61,13 @@ export default function AdminControl() {
                     </tr>
                 </thead>
                 <tbody>
-                    {loading ? ( // Display loading message while data is being fetched
+                    {loading ? (
                         <tr>
                             <td colSpan="8">Loading...</td>
+                        </tr>
+                    ) : courses.length === 0 ? (
+                        <tr>
+                            <td colSpan="8">No courses available</td>
                         </tr>
                     ) : (
                         courses
@@ -77,11 +88,6 @@ export default function AdminControl() {
                                 </tr>
                             ))
                     )}
-                    {courses.length === 0 && !loading && ( // Display message if no courses available
-                        <tr>
-                            <td colSpan="8">No courses available</td>
-                        </tr>
-                    )}
                 </tbody>
             </table>
             <div className="button-row">
@@ -89,7 +95,6 @@ export default function AdminControl() {
                 <button className='btn2'>Add</button>
                 <button className='btn3'>Update</button>
                 <button className='btn4'>Delete</button>
-                
             </div>
         </div>
     );

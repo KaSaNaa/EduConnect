@@ -2,12 +2,16 @@
 
 import React from 'react'
 import AdminControl from '../src/pages/AdminControl'
-import UpdateUsers from '../src/pages/UpdateUsers'
+import UpdateUsers from './pages/UpdateCource'
+import AddUser from './pages/AddCource'
+import DeleteCource from '../src/pages/DeleteCource'
 export default function App() {
   return (
     <div>
       <AdminControl/>
-      <UpdateUsers/>
+      {/* <UpdateUsers/> */}
+      {/* <AddUser/> */}
+      {/* <DeleteCource/> */}
       
     </div>
   )
