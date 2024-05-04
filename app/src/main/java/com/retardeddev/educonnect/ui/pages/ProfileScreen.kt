@@ -8,16 +8,16 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.retardeddev.educonnect.data.SharedPrefHelper
 import com.retardeddev.educonnect.ui.components.profile.AccountManagement
 import com.retardeddev.educonnect.ui.components.profile.PersonalInfo
 import com.retardeddev.educonnect.ui.components.profile.ProfilePicture
 import com.retardeddev.educonnect.ui.pages.global.ColumnGlobal
 
-@Preview
 @Composable
-fun ProfileScreen() {
+fun ProfileScreen(sharedPrefHelper: SharedPrefHelper) {
+    val userData = sharedPrefHelper.getUserData()
     val scrollState = rememberScrollState()
     ColumnGlobal(
         verticalArrangement = Arrangement.spacedBy(10.dp, Alignment.CenterVertically),

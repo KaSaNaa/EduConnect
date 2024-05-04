@@ -101,7 +101,7 @@ fun SignupForm() {
                     GenderRadioButton()
                     CustomSpacer1()
                     val context = LocalContext.current
-                    com.retardeddev.educonnect.ui.pages.DatePicker(context = context)
+                    DatePicker(context = context)
                     CustomSpacer1()
                 }
             }

@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
+import com.retardeddev.educonnect.data.SharedPrefHelper
 import com.retardeddev.educonnect.ui.theme.AppTheme
 import com.retardeddev.educonnect.ui.theme.backgroundDark
 
@@ -21,7 +22,8 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize()
                 ) {
                     val navController = rememberNavController()
-                    AppNavHost(navController = navController)
+                    val sharedPrefHelper = SharedPrefHelper(this)
+                    AppNavHost(navController = navController, sharedPrefHelper = sharedPrefHelper)
                 }
             }
         }

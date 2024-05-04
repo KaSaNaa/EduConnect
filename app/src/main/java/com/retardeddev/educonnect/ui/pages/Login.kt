@@ -34,6 +34,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.retardeddev.educonnect.R
+import com.retardeddev.educonnect.data.SharedPrefHelper
 import com.retardeddev.educonnect.navigation.NavigationItem
 import com.retardeddev.educonnect.ui.theme.inverseOnSurfaceLight
 import com.retardeddev.educonnect.ui.theme.onPrimaryDark
@@ -42,13 +43,16 @@ import com.retardeddev.educonnect.ui.theme.onSecondaryContainerLight
 import com.retardeddev.educonnect.ui.theme.outlineDark
 import com.retardeddev.educonnect.ui.theme.outlineVariantDark
 import com.retardeddev.educonnect.ui.theme.primaryDark
+import com.retardeddev.educonnect.ui.theme.secondaryDark
 import com.retardeddev.educonnect.ui.theme.surfaceContainerHighestDark
 import com.retardeddev.educonnect.viewModel.UserViewModel
+import com.retardeddev.educonnect.viewModel.UserViewModelFactory
 
 
 @Composable
-fun LoginForm(navController: NavController) {
-    val viewModel: UserViewModel = viewModel()
+fun LoginForm(navController: NavController, sharedPrefHelper: SharedPrefHelper) {
+    val factory = UserViewModelFactory(sharedPrefHelper)
+    val viewModel: UserViewModel = viewModel(factory = factory)
     var email by remember { mutableStateOf("") }
     var code by remember { mutableStateOf("") }
     Surface {
@@ -89,7 +93,9 @@ fun LoginForm(navController: NavController) {
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = outlineDark,
                     focusedLabelColor = outlineDark,
-                    cursorColor = outlineDark
+                    cursorColor = outlineDark,
+                    focusedTextColor = primaryDark,
+                    unfocusedTextColor = secondaryDark
                 )
             )
 
@@ -111,7 +117,9 @@ fun LoginForm(navController: NavController) {
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = outlineDark,
                     focusedLabelColor = outlineDark,
-                    cursorColor = outlineDark
+                    cursorColor = outlineDark,
+                    focusedTextColor = primaryDark,
+                    unfocusedTextColor = secondaryDark
                 )
             )
 
@@ -123,7 +131,7 @@ fun LoginForm(navController: NavController) {
                     .width(148.dp)
                     .height(40.dp),
                 colors = ButtonDefaults.buttonColors(primaryDark)
-            ) { Text("Sign In", color = onPrimaryDark) }
+            ) { Text("Sign in", color = onPrimaryDark) }
 
             Spacer(modifier = Modifier.height(16.dp))
 
@@ -166,7 +174,7 @@ fun LoginForm(navController: NavController) {
             Spacer(modifier = Modifier.height(16.dp))
 
             OutlinedButton(
-                onClick = { navController.navigate(NavigationItem.SignUp.route) },
+                onClick = { navController.navigate(NavigationItem.Signup.route) },
                 modifier = Modifier
                     .width(148.dp)
                     .height(40.dp),

@@ -5,14 +5,14 @@ enum class Screen {
     UPDATES,
     PROFILE,
     SPLASH,
-    SIGNIN,
-    SIGNUP
+    SIGNUP,
+    SIGNIN
 }
 sealed class NavigationItem(val route: String) {
     object Home : NavigationItem(Screen.HOME.name)
     object Updates : NavigationItem(Screen.UPDATES.name)
     object Profile : NavigationItem(Screen.PROFILE.name)
     object Splash : NavigationItem(Screen.SPLASH.name)
-    object SignIn : NavigationItem(Screen.SIGNIN.name)
-    object SignUp : NavigationItem(Screen.SIGNUP.name)
+    object Signup : NavigationItem(Screen.SIGNUP.name)
+    object Signin : NavigationItem(Screen.SIGNIN.name)
 }
