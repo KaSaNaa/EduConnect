@@ -1,3 +1,4 @@
+import com.retardeddev.educonnect.data.model.Course
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -27,6 +28,11 @@ class UserRepository {
 
     suspend fun getUserData(token: String): UserApi.UserDataResponse? {
         val response = userApi.getUserData("Bearer $token")
+        return if (response.isSuccessful) response.body() else null
+    }
+
+    suspend fun getCourses(): List<Course>? {
+        val response = userApi.getCourses()
         return if (response.isSuccessful) response.body() else null
     }
 }

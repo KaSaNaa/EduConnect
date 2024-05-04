@@ -1,3 +1,4 @@
+package com.retardeddev.educonnect.navigation
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -10,7 +11,6 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.retardeddev.educonnect.data.SharedPrefHelper
-import com.retardeddev.educonnect.navigation.NavigationItem
 import com.retardeddev.educonnect.ui.components.BottomBar
 import com.retardeddev.educonnect.ui.pages.HomeScreen
 import com.retardeddev.educonnect.ui.pages.LoginForm
@@ -18,12 +18,15 @@ import com.retardeddev.educonnect.ui.pages.ProfileScreen
 import com.retardeddev.educonnect.ui.pages.SignupForm
 import com.retardeddev.educonnect.ui.pages.SplashScreen
 import com.retardeddev.educonnect.ui.pages.UpdatesScreen
+import com.retardeddev.educonnect.ui.pages.courses.CourseListScreen
+import com.retardeddev.educonnect.viewModel.UserViewModel
 
 @Composable
 fun AppNavHost(
     modifier: Modifier = Modifier,
     navController: NavHostController,
     sharedPrefHelper: SharedPrefHelper,
+    viewModel: UserViewModel, // Add this line
     startDestination: String = NavigationItem.Splash.route
 ) {
     NavHost(
@@ -42,7 +45,12 @@ fun AppNavHost(
         }
         composable(NavigationItem.Home.route) {
             ScreenWithBottomBar(navController) {
-                HomeScreen(sharedPrefHelper)
+                HomeScreen(navController, sharedPrefHelper, viewModel)
+            }
+        }
+        composable(NavigationItem.CourseList.route) {
+            ScreenWithBottomBar(navController) {
+                CourseListScreen()
             }
         }
         composable(NavigationItem.Profile.route) {

@@ -17,8 +17,8 @@ import androidx.compose.material.icons.outlined.ArrowForward
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.Divider
 import androidx.compose.material3.FilledTonalButton
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.ListItemDefaults
@@ -40,7 +40,9 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.retardeddev.educonnect.R
+import com.retardeddev.educonnect.navigation.NavigationItem
 import com.retardeddev.educonnect.ui.theme.onBackgroundDark
 import com.retardeddev.educonnect.ui.theme.onSecondaryDark
 import com.retardeddev.educonnect.ui.theme.primaryContainerDark
@@ -107,7 +109,7 @@ fun WelcomeCard(name: String) {
 }
 
 @Composable
-fun CoursesCarousel() {
+fun CoursesCarousel(navController: NavController, courses: List<String>) {
     Card(
         colors = CardDefaults.cardColors(
             containerColor = primaryContainerDark
@@ -140,7 +142,7 @@ fun CoursesCarousel() {
                         .align(Alignment.CenterVertically) // Align to center vertically
                 )
                 FilledTonalButton(
-                    onClick = { /*TODO*/ },
+                    onClick = { navController.navigate(NavigationItem.CourseList.route) },
                     colors = ButtonDefaults.outlinedButtonColors(onSecondaryDark),
                     contentPadding = PaddingValues(0.dp),
                     modifier = Modifier
@@ -236,7 +238,7 @@ fun RecentUpdates(updates: List<String>) {
                                 },
                                 colors = ListItemDefaults.colors(onSecondaryDark)
                             )
-                            Divider()
+                            HorizontalDivider()
                         }
                     }
                 }
@@ -250,12 +252,6 @@ fun RecentUpdates(updates: List<String>) {
 fun PreviewWelcomeCard() {
     @Suppress("SameParameterValue")
     WelcomeCard(name = "Pasindu Ranawakage")
-}
-
-@Preview
-@Composable
-fun CoursesPrev() {
-    CoursesCarousel()
 }
 
 @Preview

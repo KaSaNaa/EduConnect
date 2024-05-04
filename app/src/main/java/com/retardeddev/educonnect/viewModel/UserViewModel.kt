@@ -3,6 +3,7 @@ package com.retardeddev.educonnect.viewModel
 import UserApi
 import UserRepository
 import android.util.Log
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.gson.Gson
@@ -12,6 +13,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class UserViewModel(private val sharedPrefHelper: SharedPrefHelper) : ViewModel() {
+    val courses = MutableLiveData<List<String>>()
     private val userRepository = UserRepository()
 
     fun login(email: String, code: String) {
@@ -32,7 +34,7 @@ class UserViewModel(private val sharedPrefHelper: SharedPrefHelper) : ViewModel(
         }
     }
 
-    fun getUserData(token: String) {
+    private fun getUserData(token: String) {
         viewModelScope.launch {
             try {
                 val userData = withContext(Dispatchers.IO) { userRepository.getUserData(token) }
@@ -72,5 +74,16 @@ class UserViewModel(private val sharedPrefHelper: SharedPrefHelper) : ViewModel(
 
     fun logout() {
         sharedPrefHelper.clearData()
+    }
+
+    fun fetchCourses() {
+        viewModelScope.launch {
+            try {
+                val courseList = withContext(Dispatchers.IO) { userRepository.getCourses() }
+                courses.value = courseList?.map { it.name } ?: emptyList()
+            } catch (e: Exception) {
+                println("Failed to fetch courses: ${e.message}")
+            }
+        }
     }
 }

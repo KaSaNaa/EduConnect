@@ -1,3 +1,4 @@
+import com.retardeddev.educonnect.data.model.Course
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -31,4 +32,7 @@ interface UserApi {
 
     @GET("user")
     suspend fun getUserData(@Header("Authorization") token: String): Response<UserDataResponse>
+
+    @GET("course")
+    suspend fun getCourses(): Response<List<Course>>
 }
