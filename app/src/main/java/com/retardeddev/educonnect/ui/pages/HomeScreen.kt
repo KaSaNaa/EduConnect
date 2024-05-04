@@ -12,12 +12,12 @@ import com.retardeddev.educonnect.ui.pages.global.ColumnGlobal
 
 @Composable
 fun HomeScreen(sharedPrefHelper: SharedPrefHelper) {
-    val userData = sharedPrefHelper.getUserData()
+    val userFullName = sharedPrefHelper.getUserFullName()
     ColumnGlobal(
         verticalArrangement = Arrangement.
             spacedBy(30.dp, Alignment.CenterVertically)
     ) {
-        WelcomeCard(name = "Pasindu Ranawakage")
+        WelcomeCard(name = userFullName ?: "User")
         CoursesCarousel()
         val dummyUpdates = listOf("Update 1", "Update 2", "Update 3")
         RecentUpdates(dummyUpdates)

@@ -10,7 +10,7 @@ export default function App() {
     <div>
       <AdminControl/>
       {/* <UpdateUsers/> */}
-      {/* <AddUser/> */}
+      <AddUser/>
       {/* <DeleteCource/> */}
       
     </div>

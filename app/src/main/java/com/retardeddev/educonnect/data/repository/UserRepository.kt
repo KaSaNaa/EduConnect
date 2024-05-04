@@ -1,8 +1,3 @@
-package com.retardeddev.educonnect.data.repository
-
-import com.retardeddev.educonnect.api.UserApi
-import com.retardeddev.educonnect.api.UserApi.UserDataResponse
-import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -18,17 +13,20 @@ class UserRepository {
         userApi = retrofit.create(UserApi::class.java)
     }
 
-    fun login(email: String, code:String) : Call<UserApi.LoginResponse> {
+    suspend fun login(email: String, code:String) : UserApi.LoginResponse? {
         val request = UserApi.LoginRequest(email, code)
-        return userApi.login(request)
+        val response = userApi.login(request)
+        return if (response.isSuccessful) response.body() else null
     }
 
-    fun sendCode(email: String) : Call<Unit> {
+    suspend fun sendCode(email: String) : Boolean {
         val request = UserApi.SendCodeRequest(email)
-        return userApi.sendCode(request)
+        val response = userApi.sendCode(request)
+        return response.isSuccessful
     }
 
-    fun getUserData(token: String): Call<UserDataResponse> {
-        return userApi.getUserData("Bearer $token")
+    suspend fun getUserData(token: String): UserApi.UserDataResponse? {
+        val response = userApi.getUserData("Bearer $token")
+        return if (response.isSuccessful) response.body() else null
     }
 }

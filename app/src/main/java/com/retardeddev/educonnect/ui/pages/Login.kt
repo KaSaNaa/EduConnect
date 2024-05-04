@@ -126,7 +126,10 @@ fun LoginForm(navController: NavController, sharedPrefHelper: SharedPrefHelper) 
             Spacer(modifier = Modifier.height(25.dp))
 
             Button(
-                onClick = { viewModel.login(email, code) },
+                onClick = {
+                    viewModel.login(email, code)
+                    navController.navigate(NavigationItem.Home.route)
+                },
                 modifier = Modifier
                     .width(148.dp)
                     .height(40.dp),
