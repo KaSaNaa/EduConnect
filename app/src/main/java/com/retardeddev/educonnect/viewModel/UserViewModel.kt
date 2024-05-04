@@ -1,13 +1,13 @@
 package com.retardeddev.educonnect.viewModel
 
-import UserApi
-import UserRepository
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.gson.Gson
+import com.retardeddev.educonnect.api.UserApi
 import com.retardeddev.educonnect.data.SharedPrefHelper
+import com.retardeddev.educonnect.data.repository.UserRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -77,13 +77,13 @@ class UserViewModel(private val sharedPrefHelper: SharedPrefHelper) : ViewModel(
     }
 
     fun fetchCourses() {
-        viewModelScope.launch {
-            try {
-                val courseList = withContext(Dispatchers.IO) { userRepository.getCourses() }
-                courses.value = courseList?.map { it.name } ?: emptyList()
-            } catch (e: Exception) {
-                println("Failed to fetch courses: ${e.message}")
-            }
+    viewModelScope.launch {
+        try {
+            val courseList = withContext(Dispatchers.IO) { userRepository.getCourses() }
+            courses.value = courseList?.map { it.title } ?: emptyList()
+        } catch (e: Exception) {
+            println("Failed to fetch courses: ${e.message}")
         }
     }
+}
 }

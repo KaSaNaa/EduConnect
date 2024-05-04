@@ -50,7 +50,7 @@ fun AppNavHost(
         }
         composable(NavigationItem.CourseList.route) {
             ScreenWithBottomBar(navController) {
-                CourseListScreen()
+                CourseListScreen(viewModel)
             }
         }
         composable(NavigationItem.Profile.route) {

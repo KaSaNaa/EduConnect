@@ -1,12 +1,20 @@
 package com.retardeddev.educonnect.data.model
 
 data class Course(
-    val name: String,
-    val desc: String,
+    val _id: String,
+    val title: String,
+    val description: String,
+    val commencement: String,
     val duration: String,
-    val commencementDate: String,
     val fee: String,
     val maxParticipants: Int,
-    val branches: String,
-    val registrationClosingDate: String
+    val branches: List<String>,
+    val cid: Int,
+    val __v: Int
+)
+
+data class Notification(
+    val id: Int,
+    val time: String,
+    val message: String
 )

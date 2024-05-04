@@ -1,3 +1,5 @@
+package com.retardeddev.educonnect.api
+
 import com.retardeddev.educonnect.data.model.Course
 import retrofit2.Response
 import retrofit2.http.Body

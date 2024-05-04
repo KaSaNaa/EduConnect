@@ -1,3 +1,6 @@
+package com.retardeddev.educonnect.data.repository
+
+import com.retardeddev.educonnect.api.UserApi
 import com.retardeddev.educonnect.data.model.Course
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

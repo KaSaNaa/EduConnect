@@ -1,10 +1,10 @@
 package com.retardeddev.educonnect.data
 
-import UserApi
 import android.content.Context
 import android.content.SharedPreferences
 import com.google.gson.Gson
 import com.google.gson.JsonSyntaxException
+import com.retardeddev.educonnect.api.UserApi
 
 class SharedPrefHelper(context: Context) {
     private val PREFS_NAME = "user_prefs"
