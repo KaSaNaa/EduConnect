@@ -42,6 +42,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.retardeddev.educonnect.R
+import com.retardeddev.educonnect.data.model.Course
 import com.retardeddev.educonnect.navigation.NavigationItem
 import com.retardeddev.educonnect.ui.theme.onBackgroundDark
 import com.retardeddev.educonnect.ui.theme.onSecondaryDark
@@ -109,7 +110,7 @@ fun WelcomeCard(name: String) {
 }
 
 @Composable
-fun CoursesCarousel(navController: NavController, courses: List<String>) {
+fun CoursesCarousel(navController: NavController, courses: List<Course>) {
     Card(
         colors = CardDefaults.cardColors(
             containerColor = primaryContainerDark
