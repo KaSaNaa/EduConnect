@@ -17,39 +17,30 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.retardeddev.educonnect.R
+import com.retardeddev.educonnect.data.model.Course
 import com.retardeddev.educonnect.ui.theme.onSurfaceDark
 import com.retardeddev.educonnect.ui.theme.surfaceDark
 
 
 @Composable
-fun CourseCardsList(courses: List<String>) {
-    // Use a LazyVerticalGrid for efficient scrolling with large lists
+fun CourseCardsList(courses: List<Course>, navController: NavController) {
     LazyVerticalGrid(
-        columns = GridCells.Fixed(2), // This creates a grid with 2 columns
+        columns = GridCells.Fixed(2),
         contentPadding = PaddingValues(10.dp)
     ) {
         items(courses.size) { index ->
-            CourseCard(courseName = courses[index])
+            CourseCard(course = courses[index], navController = navController)
         }
     }
 }
 
-@Preview
 @Composable
-private fun ListPreview() {
-    val courseList = listOf("Software", "Hardware", "Network", "System Design", "Language", "Logistics")
-    CourseCardsList(courses = courseList)
-}
-
-
-
-@Composable
-private fun CourseCard(courseName: String) { // TODO: pass Course Objects
+private fun CourseCard(course: Course, navController: NavController) {
     OutlinedCard(
-        onClick = { /*TODO*/ },
+        onClick = { navController.navigate("courseDetails/${course.cid}") },
         colors = CardDefaults.cardColors(surfaceDark),
         modifier = Modifier.size(181.dp).padding(8.dp)
     ) {
@@ -71,7 +62,7 @@ private fun CourseCard(courseName: String) { // TODO: pass Course Objects
                     .padding(top = 15.dp, start = 8.dp)// This makes the texts take up the other half of the Column
             ) {
                 Text(
-                    text = courseName,
+                    text = course.title,
                     color = onSurfaceDark,
                     style = MaterialTheme.typography.titleSmall,
                     modifier = Modifier.fillMaxWidth()
