@@ -21,6 +21,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.DateRange
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.HorizontalDivider
@@ -44,9 +45,11 @@ import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.retardeddev.educonnect.R
+import com.retardeddev.educonnect.api.UserApi
+import com.retardeddev.educonnect.navigation.NavigationItem
 import com.retardeddev.educonnect.ui.theme.inverseOnSurfaceLight
 import com.retardeddev.educonnect.ui.theme.onPrimaryDark
 import com.retardeddev.educonnect.ui.theme.onSecondaryContainerLight
@@ -54,10 +57,38 @@ import com.retardeddev.educonnect.ui.theme.onSurfaceVariantDark
 import com.retardeddev.educonnect.ui.theme.outlineDark
 import com.retardeddev.educonnect.ui.theme.outlineVariantDark
 import com.retardeddev.educonnect.ui.theme.primaryDark
+import com.retardeddev.educonnect.viewModel.UserViewModel
 
-@Preview
+
 @Composable
-fun SignupForm() {
+fun SignupForm(navController: NavController, viewModel: UserViewModel) {
+    var username byss6 remember { mutableStateOf("") }
+    var fullName by remember { mutableStateOf("") }
+    var address by remember { mutableStateOf("") }
+    var city by remember { mutableStateOf("") }
+    var nic by remember { mutableStateOf("") }
+    var email by remember { mutableStateOf("") }
+    var phoneNumber by remember { mutableStateOf("") }
+    var gender by remember { mutableStateOf(true) }
+    var dob by remember { mutableStateOf("") }
+
+    var isDialogVisible by remember { mutableStateOf(false) }
+
+    if (isDialogVisible) {
+        AlertDialog(
+            onDismissRequest = { isDialogVisible = false },
+            title = { Text("Signup Successful") },
+            text = { Text("You have successfully signed up. Please login.") },
+            confirmButton = {
+                Button(onClick = {
+                    isDialogVisible = false
+                    navController.navigate(NavigationItem.Signin.route) // Navigate to login screen
+                }) {
+                    Text("OK")
+                }
+            }
+        )
+    }
     Surface {
         Column(
             modifier = Modifier
@@ -107,7 +138,19 @@ fun SignupForm() {
             }
             CustomSpacer2()
             Button(
-                onClick = { /*TODO: Handle click event*/ },
+                onClick = { val request = UserApi.SignupRequest(
+                    username = username,
+                    fullName = fullName,
+                    address = address,
+                    city = city,
+                    nic = nic,
+                    email = email,
+                    phoneNumber = phoneNumber,
+                    gender = gender,
+                    dob = dob
+                )
+                    viewModel.signup(request)
+                    isDialogVisible = true },
                 modifier = Modifier
                     .width(148.dp)
                     .height(40.dp),
@@ -250,4 +293,3 @@ fun DatePicker(context: Context) {
         )
     )
 }
-
