@@ -18,6 +18,7 @@ import com.retardeddev.educonnect.ui.pages.ProfileScreen
 import com.retardeddev.educonnect.ui.pages.SignupForm
 import com.retardeddev.educonnect.ui.pages.SplashScreen
 import com.retardeddev.educonnect.ui.pages.UpdatesScreen
+import com.retardeddev.educonnect.ui.pages.courses.CourseDetailsScreen
 import com.retardeddev.educonnect.ui.pages.courses.CourseListScreen
 import com.retardeddev.educonnect.viewModel.UserViewModel
 
@@ -41,7 +42,7 @@ fun AppNavHost(
             LoginForm(navController, sharedPrefHelper)
         }
         composable(NavigationItem.Signup.route) {
-            SignupForm()
+            SignupForm(navController, viewModel)
         }
         composable(NavigationItem.Home.route) {
             ScreenWithBottomBar(navController) {
@@ -50,7 +51,13 @@ fun AppNavHost(
         }
         composable(NavigationItem.CourseList.route) {
             ScreenWithBottomBar(navController) {
-                CourseListScreen(viewModel)
+                CourseListScreen(viewModel, navController)
+            }
+        }
+        composable("courseDetails/{courseId}") { backStackEntry ->
+            val courseId = backStackEntry.arguments?.getString("courseId")
+            if (courseId != null) {
+                CourseDetailsScreen(courseId.toInt(), viewModel)
             }
         }
         composable(NavigationItem.Profile.route) {
