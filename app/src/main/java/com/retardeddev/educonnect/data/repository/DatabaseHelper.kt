@@ -4,88 +4,73 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
-import android.util.Log
 import com.retardeddev.educonnect.data.model.Course
+import com.retardeddev.educonnect.data.model.Notification
 
-class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
-    companion object{
-        private const val DATABASE_VERSION = 1
-        private const val DATABASE_NAME = "EduConnectDB"
-        private  const val TABLE_COURSES = "Courses"
+class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, "EduConnect", null, 1) {
+
+    override fun onCreate(db: SQLiteDatabase) {
+        val CREATE_COURSES_TABLE =
+            "CREATE TABLE Courses (_id INTEGER PRIMARY KEY, title TEXT, description TEXT, commencement TEXT, duration TEXT, fee TEXT, maxParticipants TEXT, branches TEXT, cid TEXT, __v INTEGER)"
+        val CREATE_NOTIFICATIONS_TABLE =
+            "CREATE TABLE Notifications (id INTEGER PRIMARY KEY AUTOINCREMENT, time TEXT, message TEXT)"
+        db.execSQL(CREATE_COURSES_TABLE)
+        db.execSQL(CREATE_NOTIFICATIONS_TABLE)
     }
 
-    override fun onCreate(db: SQLiteDatabase?) {
-        val createCoursesTable = ("CREATE TABLE " + TABLE_COURSES +
-                "(" + "_id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "name TEXT," +
-                "description TEXT," +
-                "duration TEXT," +
-                "commencementDate TEXT," +
-                "fee TEXT," +
-                "maxParticipants INTEGER," +
-                "branches TEXT," +
-                "registrationClosingDate TEXT" + ")"
-                )
-        db?.execSQL(createCoursesTable)
-    }
-
-    override fun onUpgrade(p0: SQLiteDatabase?, p1: Int, p2: Int) {
-        p0?.execSQL("DROP TABLE IF EXISTS $TABLE_COURSES")
-        onCreate(p0)
-    }
-
-    fun getCourseDetails(courseID: Int): Course {
-        val db = this.readableDatabase
-        val cursor = db.rawQuery("SELECT * FROM $TABLE_COURSES WHERE _id = ?", arrayOf(courseID.toString()))
-        lateinit var course: Course
-        if (cursor.moveToFirst()) {
-            course = Course(
-                cursor.getString(1),
-                cursor.getString(2),
-                cursor.getString(3),
-                cursor.getString(4),
-                cursor.getString(5),
-                cursor.getInt(6),
-                cursor.getString(7),
-                cursor.getString(8)
-            )
-        }
-        cursor.close()
-        return course
+    override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
+        db.execSQL("DROP TABLE IF EXISTS Courses")
+        db.execSQL("DROP TABLE IF EXISTS Notifications")
+        onCreate(db)
     }
 
     fun addCourse(course: Course) {
         val db = this.writableDatabase
         val values = ContentValues().apply {
-            put("name", course.name)
-            put("description", course.desc)
+            put("_id", course._id.toString())
+            put("title", course.title)
+            put("description", course.description)
+            put("commencement", course.commencement)
             put("duration", course.duration)
-            put("commencementDate", course.commencementDate)
             put("fee", course.fee)
-            put("maxParticipants", course.maxParticipants)
-            put("branches", course.branches)
-            put("registrationClosingDate", course.registrationClosingDate)
+            put("maxParticipants", course.maxParticipants.toString())
+            put("branches", course.branches.joinToString(","))
+            put("cid", course.cid)
+            put("__v", course.__v.toString())
         }
         db.insert("Courses", null, values)
         db.close()
     }
 
-    fun logAllCourses() {
+    fun addNotification(notification: Notification) {
+        val db = this.writableDatabase
+        val values = ContentValues().apply {
+            put("time", notification.time)
+            put("message", notification.message)
+        }
+        db.insert("Notifications", null, values)
+        db.close()
+    }
+
+    fun getNotifications(): List<Notification> {
         val db = this.readableDatabase
-        val cursor = db.rawQuery("SELECT * FROM $TABLE_COURSES", null)
-        while (cursor.moveToNext()) {
-            val course = Course(
-                cursor.getString(1),
-                cursor.getString(2),
-                cursor.getString(3),
-                cursor.getString(4),
-                cursor.getString(5),
-                cursor.getInt(6),
-                cursor.getString(7),
-                cursor.getString(8)
-            )
-            Log.d("DatabaseHelper", course.toString())
+        val cursor = db.rawQuery("SELECT * FROM Notifications", null)
+        val notifications = mutableListOf<Notification>()
+        if (cursor.moveToFirst()) {
+            do {
+                val idIndex = cursor.getColumnIndex("id")
+                val timeIndex = cursor.getColumnIndex("time")
+                val messageIndex = cursor.getColumnIndex("message")
+
+                val id = if (idIndex != -1) cursor.getInt(idIndex) else 0
+                val time = if (timeIndex != -1) cursor.getString(timeIndex) else ""
+                val message = if (messageIndex != -1) cursor.getString(messageIndex) else ""
+
+                notifications.add(Notification(id, time, message))
+            } while (cursor.moveToNext())
         }
         cursor.close()
+        db.close()
+        return notifications
     }
 }
