@@ -17,6 +17,11 @@ class UserRepository {
         userApi = retrofit.create(UserApi::class.java)
     }
 
+    suspend fun signup(request: UserApi.SignupRequest): Boolean {
+        val response = userApi.signup(request)
+        return response.isSuccessful
+    }
+
     suspend fun login(email: String, code:String) : UserApi.LoginResponse? {
         val request = UserApi.LoginRequest(email, code)
         val response = userApi.login(request)
@@ -36,6 +41,11 @@ class UserRepository {
 
     suspend fun getCourses(): List<Course>? {
         val response = userApi.getCourses()
+        return if (response.isSuccessful) response.body() else null
+    }
+
+    suspend fun getCourseById(courseId: Int): Course? {
+        val response = userApi.getCoursebyId(courseId)
         return if (response.isSuccessful) response.body() else null
     }
 }
