@@ -26,7 +26,7 @@ class MainActivity : ComponentActivity() {
                 ) {
                     val navController = rememberNavController()
                     val sharedPrefHelper = SharedPrefHelper(this)
-                    val factory = UserViewModelFactory(sharedPrefHelper)
+                    val factory = UserViewModelFactory(this, sharedPrefHelper)
                     val viewModel: UserViewModel = viewModel(factory = factory)
                     AppNavHost(navController = navController, sharedPrefHelper = sharedPrefHelper, viewModel = viewModel)
                 }
