@@ -29,6 +29,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -51,7 +52,7 @@ import com.retardeddev.educonnect.viewModel.UserViewModelFactory
 
 @Composable
 fun LoginForm(navController: NavController, sharedPrefHelper: SharedPrefHelper) {
-    val factory = UserViewModelFactory(sharedPrefHelper)
+    val factory = UserViewModelFactory(LocalContext.current, sharedPrefHelper)
     val viewModel: UserViewModel = viewModel(factory = factory)
     var email by remember { mutableStateOf("") }
     var code by remember { mutableStateOf("") }
